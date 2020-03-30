@@ -11,10 +11,8 @@ SCRIPT_DIRECTORY="${0%/*}"
 # shellcheck source=/dev/null
 source "$SCRIPT_DIRECTORY"/utils.sh
 
-# mkdir $current_date
+create_folder_with_date $current_date
+
+copy_sites $HARD_DRIVE $current_date
 
 disk_space
-
-move_to_icloud
-
-pwd
