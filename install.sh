@@ -11,7 +11,7 @@ chmod +x backup.sh
 
 # Get repository path
 repository_folder=$(pwd)
-printf "The script is being installed in: $repository_folder\n"
+printf "The script is being installed in: %s\n" "$repository_folder"
 
 # Save alias
 printf " >>> Remove alias if exists\n"
