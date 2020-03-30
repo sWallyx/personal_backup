@@ -15,9 +15,8 @@ move_to_icloud(){
 }
 
 copy_sites(){
-    printf "\n >>> CP of Site folder\n\n"
-    echo "$1"/"$2"/Sites
-    #cp -a /Users/mikel/Sites/. $HardDrive/$current_date/Sites
+    printf "\n >>> CP of Site folder\n"
+    cp -a /Users/mikel/Sites/. "$1"/"$2"/Sites
 }
 
 save_dropbox(){
@@ -30,7 +29,7 @@ move_to_hard_drive(){
 }
 
 create_folder_with_date(){
-    printf "\n >>> Creating folder\n\n"
+    printf "\n >>> Creating folder\n"
 
     move_to_hard_drive
 
