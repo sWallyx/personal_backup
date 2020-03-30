@@ -13,6 +13,12 @@ source "$SCRIPT_DIRECTORY"/utils.sh
 
 create_folder_with_date "$current_date"
 
-copy_sites "$HARD_DRIVE" "$current_date"
+# copy_sites "$HARD_DRIVE" "$current_date"
+
+# copy_documents "$HARD_DRIVE" "$current_date"
+
+copy_dropbox "$HARD_DRIVE" "$current_date"
+
+# copy_iCloud_CV "$HARD_DRIVE" "$current_date"
 
 disk_space

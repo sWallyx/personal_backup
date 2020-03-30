@@ -15,12 +15,24 @@ move_to_icloud(){
 }
 
 copy_sites(){
-    printf "\n >>> CP of Site folder\n"
-    cp -a /Users/mikel/Sites/. "$1"/"$2"/Sites
+    printf "\n >>> Copy of User Site\n"
+    rsync --progress -a /Users/mikel/Sites/. "$1"/"$2"/Sites
 }
 
-save_dropbox(){
-    cd "$HARD_DRIVE" || exit
+copy_documents(){
+    printf "\n >>> Copy of User Documents\n"
+    rsync --progress -a /Users/mikel/Documents/. "$1"/"$2"/Documents
+}
+
+copy_iCloud_CV(){
+    printf "\n >>> Copy of iCloud CV\n"
+    move_to_icloud 
+    rsync --progress -a CV/. "$1"/"$2"/CV
+}
+
+copy_dropbox(){
+    printf "\n >>> Copy of User Personal Dropbox\n"
+    rsync --progress -a /Users/mikel/Dropbox\ \(Personal\)/. "$1"/"$2"/Dropbox
 }
 
 move_to_hard_drive(){
