@@ -72,3 +72,11 @@ create_folder_with_date(){
     mkdir "$1"
 
 }
+
+find_directories_to_copy(){
+    for dir in $(find -name ".backup_me.backup" ! -path "/Volumes/LaCie/*"  2>&1 | grep -v "Operation not permitted")
+    do
+        cd $dir
+        pwd
+    done
+}
