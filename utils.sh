@@ -30,6 +30,30 @@ copy_iCloud_CV(){
     rsync --progress -a CV/. "$1"/"$2"/CV
 }
 
+copy_iCloud_Billetes_Vuelo(){
+    printf "\n >>> Copy of iCloud Billetes Vuelo\n"
+    move_to_icloud 
+    rsync --progress -a Billetes_Vuelo/. "$1"/"$2"/Billetes_Vuelo
+}
+
+copy_iCloud_Wallpapers(){
+    printf "\n >>> Copy of iCloud Billetes Vuelo\n"
+    move_to_icloud 
+    rsync --progress -a Wallpapers/. "$1"/"$2"/Wallpapers
+}
+
+copy_iCloud_KAMON(){
+    printf "\n >>> Copy of iCloud Billetes Vuelo\n"
+    move_to_icloud 
+    rsync --progress -a KAMON/. "$1"/"$2"/KAMON
+}
+
+copy_iCloud_Images(){
+    printf "\n >>> Copy of iCloud Billetes Vuelo\n"
+    move_to_icloud 
+    rsync --progress -a Images/. "$1"/"$2"/Images
+}
+
 copy_dropbox(){
     printf "\n >>> Copy of User Personal Dropbox\n"
     rsync --progress -a /Users/mikel/Dropbox\ \(Personal\)/. "$1"/"$2"/Dropbox
