@@ -29,6 +29,6 @@ source "$SCRIPT_DIRECTORY"/utils.sh
 
 # copy_iCloud_Images "$HARD_DRIVE" "$current_date"
 
-find_directories_to_copy
+check_for_directory
 
 #disk_space

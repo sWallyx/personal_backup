@@ -74,9 +74,17 @@ create_folder_with_date(){
 }
 
 find_directories_to_copy(){
-    for dir in $(find -name ".backup_me.backup" ! -path "/Volumes/LaCie/*"  2>&1 | grep -v "Operation not permitted")
+    for dir in $(find / -name ".backup_me.backup" ! -path "/Volumes/LaCie/*"  2>&1 | grep -v "Operation not permitted")
     do
-        cd $dir
+        cd $dir || exit
         pwd
     done
+}
+
+check_for_directory(){
+    if [ -d "$HARD_DRIVE" ]; then
+        find_directories_to_copy
+    else
+        echo "The Hard Drive is not there"
+    fi
 }
