@@ -78,7 +78,8 @@ find_directories_to_copy(){
     printf "This may take a while \n"
 
     find ~ -name ".backup_me.backup" ! -path "/Volumes/LaCie/*" -type f  2>&1 | grep -v "Operation not permitted" | while read line; do  
-        echo "$line"
+        directory=$(dirname "${line}")
+        cd "$directory"
     done
 
 }
