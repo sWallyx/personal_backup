@@ -11,6 +11,9 @@ SCRIPT_DIRECTORY="${0%/*}"
 # shellcheck source=/dev/null
 source "$SCRIPT_DIRECTORY"/utils.sh
 
+# shellcheck source=/dev/null
+source "$SCRIPT_DIRECTORY"/colors.sh
+
 # create_folder_with_date "$current_date"
 
 # copy_sites "$HARD_DRIVE" "$current_date"
@@ -29,6 +32,6 @@ source "$SCRIPT_DIRECTORY"/utils.sh
 
 # copy_iCloud_Images "$HARD_DRIVE" "$current_date"
 
-check_for_directory
+check_for_hard_drive
 
 #disk_space
