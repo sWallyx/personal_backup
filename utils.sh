@@ -1,16 +1,9 @@
 #!/usr/bin/env bash
-# Note: use user config to know which folders to copy
-# best aproach with jq => jq .iCloud config.json
 
 disk_space(){
     # Shows on the terminal how many space is left in the HardDrive
     hard_drive_space=$(df -H "$HARD_DRIVE" | tail -1 | awk '{print $4}')
     echo " >>> Hard Drive has $hard_drive_space avalaiable"
-}
-
-copy_sites(){
-    printf "\n >>> Copy of User Site\n"
-    rsync --progress -a /Users/mikel/Sites/. "$1"/"$2"/Sites
 }
 
 move_to_hard_drive(){

@@ -27,8 +27,5 @@ echo "alias backup='$repository_folder/backup.sh'" >> ~/.zshrc
 printf " >>> Installing requirements\n\n"
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
 
-printf " >>> Installing jq\n"
-brew install jq
-
 printf " >>> Installation completed!\n\n"
 printf "You can use the command by typing backup in the terminal\n"
