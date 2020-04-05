@@ -22,10 +22,5 @@ printf " >>> Save backup alias\n\n"
 echo "alias backup='$repository_folder/backup.sh'" >> ~/.bashrc
 echo "alias backup='$repository_folder/backup.sh'" >> ~/.zshrc
 
-# Add requisites
-
-printf " >>> Installing requirements\n\n"
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null
-
 printf " >>> Installation completed!\n\n"
 printf "You can use the command by typing backup in the terminal\n"
