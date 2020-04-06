@@ -1,0 +1,4 @@
+# Gitignore file, to make git ignore the following folders or files
+
+# vs code config folder
+.vscode
