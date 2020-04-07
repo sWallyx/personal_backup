@@ -19,11 +19,11 @@ create_folder_with_date(){
 find_directories_to_copy(){
     printf "\n >>> Searching for the directories \n"
     printf "This may take a while \n"
-    
+
     find ~ -name ".backup_me.backup" ! -path "/Volumes/LaCie/*" -type f  2>&1 | grep -v "Operation not permitted" | while read -r line; do
         directory_path=$(dirname "${line}")
         cd "$directory_path" || exit
-        zip_controller "$directory_path" "$1"
+        zip_controller "$directory_path"
     done
     
 }
@@ -34,8 +34,8 @@ zip_controller(){
     directory_name="${directory##*/}"
     
     zip_name=$directory_name".zip"
-    
-    create_zip_file "$zip_name" "$2"
+
+    create_zip_file "$zip_name"
     if [ -f "$zip_name" ]; then
         echo -e "[${BLUE}OK${NC}] ZIP $zip_name creation"
 
@@ -51,10 +51,10 @@ zip_controller(){
 
 create_zip_file(){
     echo "Creating $1 ZIP file . . ."
-    
+
     # Find more files or folders to exclude
     # $2 refers to the silent_flag
-    if [ "$2" = true ] ; then
+    if [[ "$SILENT_FLAG" = "true" ]] ; then
         zip "$1" -r * -x "*/.git*" "*/node_modules*" "*/build*"  "*env/lib*" "*/bin*" "*/Debug*" "*/dist*" "*/.pytest_cache*" "*/__pycache*"
     else
         zip "$1" -dd -r * -x "*/.git*" "*/node_modules*" "*/build*"  "*env/lib*" "*/bin*" "*/Debug*" "*/dist*" "*/.pytest_cache*" "*/__pycache*"

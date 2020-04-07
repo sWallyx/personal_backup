@@ -7,6 +7,6 @@ disk_space(){
 }
 
 move_to_hard_drive(){
-    # Moves to the HardDrive folder
+    # Moves to the Hard Drive folder
     cd "$HARD_DRIVE_BACKUP" || exit
 }

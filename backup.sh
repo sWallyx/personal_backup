@@ -24,9 +24,9 @@ show_welcome_message
 
 if  [[ $1 = "-s" ]]; then
     echo "Option silent selected"
-    silent_flag=true
+    SILENT_FLAG="true"
 else
-    silent_flag=false
+    SILENT_FLAG="false"
 fi
 
 echo ">>> Searching for the Hard Drive"
@@ -37,7 +37,7 @@ if [ -d "$HARD_DRIVE" ]; then
     
     create_folder_with_date
     
-    find_directories_to_copy $silent
+    find_directories_to_copy
 else
     echo -e "[${RED}ERROR${NC}] Hard Drive"
 fi
