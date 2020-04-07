@@ -10,14 +10,3 @@ move_to_hard_drive(){
     # Moves to the HardDrive folder
     cd "$HARD_DRIVE_BACKUP" || exit
 }
-
-check_for_hard_drive(){
-    echo ">>> Searching for the Hard Drive"
-
-    if [ -d "$HARD_DRIVE" ]; then
-        echo -e "[${BLUE}OK${NC}] Hard Drive"
-        find_directories_to_copy
-    else
-        echo -e "[${RED}ERROR${NC}] Hard Drive"
-    fi
-}

@@ -9,17 +9,38 @@ CURRENT_DATE=$(date +%m-%d-%Y)
 SCRIPT_DIRECTORY="${0%/*}"
 
 # shellcheck source=/dev/null
-source "$SCRIPT_DIRECTORY"/functions/utils.sh
+source "$SCRIPT_DIRECTORY"/src/utils.sh
 
 # shellcheck source=/dev/null
-source "$SCRIPT_DIRECTORY"/functions/hard_drive_functions.sh
+source "$SCRIPT_DIRECTORY"/src/hard_drive_functions.sh
 
 # shellcheck source=/dev/null
 source "$SCRIPT_DIRECTORY"/src/colors.sh
 
-disk_space
+# shellcheck source=/dev/null
+source "$SCRIPT_DIRECTORY"/src/messages.sh
 
-create_folder_with_date
+show_welcome_message
 
-check_for_hard_drive
+if  [[ $1 = "-o" ]]; then
+    echo "Option -o turned on"
+else
+    echo "You did not use option -o"
+fi
+
+echo ">>> Searching for the Hard Drive"
+
+if [ -d "$HARD_DRIVE" ]; then
+    echo -e "[${BLUE}OK${NC}] Hard Drive"
+    disk_space
+    
+    # create_folder_with_date
+    
+    # find_directories_to_copy
+else
+    echo -e "[${RED}ERROR${NC}] Hard Drive"
+fi
+
+
+show_end_message
 
