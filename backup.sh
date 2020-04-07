@@ -9,10 +9,13 @@ CURRENT_DATE=$(date +%m-%d-%Y)
 SCRIPT_DIRECTORY="${0%/*}"
 
 # shellcheck source=/dev/null
-source "$SCRIPT_DIRECTORY"/utils.sh
+source "$SCRIPT_DIRECTORY"/functions/utils.sh
 
 # shellcheck source=/dev/null
-source "$SCRIPT_DIRECTORY"/colors.sh
+source "$SCRIPT_DIRECTORY"/functions/hard_drive_functions.sh
+
+# shellcheck source=/dev/null
+source "$SCRIPT_DIRECTORY"/src/colors.sh
 
 disk_space
 

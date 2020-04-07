@@ -25,7 +25,7 @@ The dot before the name makes the file hidden. Normal file would be `myfile.txt`
 
 ### Will it copy everything inside the folders?
 
-At the moment the backup excludes some files and folders for more information check [ZIP_IGNORE_INVESTIGATION.md](ZIP_IGNORE_INVESTIGATION.md) file. This files or folders are related to development projects and are ignored because they add nothing to the backup, this can be generated again by the developer.
+At the moment the backup excludes some files and folders for more information check [ZIP_IGNORE_INVESTIGATION.md](investigation/ZIP_IGNORE_INVESTIGATION.md) file. This files or folders are related to development projects and are ignored because they add nothing to the backup, this can be generated again by the developer.
 
 ## Installing
 
