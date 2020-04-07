@@ -23,7 +23,7 @@ find_directories_to_copy(){
     find ~ -name ".backup_me.backup" ! -path "/Volumes/LaCie/*" -type f  2>&1 | grep -v "Operation not permitted" | while read -r line; do
         directory_path=$(dirname "${line}")
         cd "$directory_path" || exit
-        zip_controller "$directory_path"
+        zip_controller "$directory_path" "$1"
     done
     
 }
@@ -35,18 +35,31 @@ zip_controller(){
     
     zip_name=$directory_name".zip"
     
-    create_zip_file "$zip_name"
+    create_zip_file "$zip_name" "$2"
+    if [ -f "$zip_name" ]; then
+        echo -e "[${BLUE}OK${NC}] ZIP $zip_name creation"
+
+        copy_to_hard_drive "$zip_name" "$directory_name"
     
-    copy_to_hard_drive "$zip_name" "$directory_name"
+        remove_temp_zip_file "$zip_name"
+        
+    else
+        echo -e "[${RED}ERROR${NC}] ZIP $zip_name creation"
+    fi
     
-    remove_temp_zip_file "$zip_name"
 }
 
 create_zip_file(){
     echo "Creating $1 ZIP file . . ."
     
     # Find more files or folders to exclude
-    zip "$1" -dd -r * -x "*/.git*" "*/node_modules*" "*/build*"  "*env/lib*" "*/bin*" "*/Debug*" "*/dist*" "*/.pytest_cache*" "*/__pycache*"
+    # $2 refers to the silent_flag
+    if [ "$2" = true ] ; then
+        zip "$1" -r * -x "*/.git*" "*/node_modules*" "*/build*"  "*env/lib*" "*/bin*" "*/Debug*" "*/dist*" "*/.pytest_cache*" "*/__pycache*"
+    else
+        zip "$1" -dd -r * -x "*/.git*" "*/node_modules*" "*/build*"  "*env/lib*" "*/bin*" "*/Debug*" "*/dist*" "*/.pytest_cache*" "*/__pycache*"
+    fi
+    
 }
 
 remove_temp_zip_file(){
