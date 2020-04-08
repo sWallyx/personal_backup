@@ -2,6 +2,9 @@
 # This file contains util functions for the application
 
 create_folder_with_date(){
+    # Creates a folder with the name of the current date (global variable)
+    # The folder is created in the HARD_DRIVE_BACKUP folder
+
     printf "\n >>> Creating folder\n"
     
     move_to_hard_drive
@@ -17,6 +20,9 @@ create_folder_with_date(){
 }
 
 find_directories_to_copy(){
+    # Using find command, finds the ".backup_me.backup" file to know which folders
+    # needs to be zipped and copied. Excludes the Hard Drive Volume
+
     printf "\n >>> Searching for the directories \n"
     printf "This may take a while \n"
 
@@ -29,6 +35,10 @@ find_directories_to_copy(){
 }
 
 zip_controller(){
+    # Controls actions with the ZIP file, first gets the name of the directory
+    # to name the ZIP with the same name, and then it creates a ZIP with all
+    # the content of the folder, copies the ZIP to the Hard Drive and removes
+    # the temp ZIP file.
     
     directory="${1%"${1##*[!/]}"}"
     directory_name="${directory##*/}"
@@ -50,10 +60,10 @@ zip_controller(){
 }
 
 create_zip_file(){
+    # Creates a ZIP file using zip command with the given name
+    # Parameters: {$1} => Zip filename, example: my_zip.zip
     echo "Creating $1 ZIP file . . ."
 
-    # Find more files or folders to exclude
-    # $2 refers to the silent_flag
     if [[ "$SILENT_FLAG" = "true" ]] ; then
         zip "$1" -q -r ./* -x "*/.git*" "*/node_modules*" "*/build*"  "*env/lib*" "*/bin*" "*/Debug*" "*/dist*" "*/.pytest_cache*" "*/__pycache*"
     else
@@ -63,6 +73,9 @@ create_zip_file(){
 }
 
 remove_temp_zip_file(){
+    # Checks if the given zip name exists and removes it
+    # Parameters: {$1} => Zip filename, example: my_zip.zip
+
     echo ">>> Removing temp zip file"
     if [ -f "$1" ]; then
         rm "$1"
@@ -74,5 +87,8 @@ remove_temp_zip_file(){
 }
 
 copy_to_hard_drive(){
+    # Copies the given ZIP file name to the Hard Drive with the same name
+    # Parameters: {$1} => Zip filename, example: my_zip.zip
+    
     rsync --progress -a "$1" "$HARD_DRIVE_BACKUP"/"$CURRENT_DATE"/"$1"
 }

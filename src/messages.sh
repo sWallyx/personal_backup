@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 show_welcome_message(){
+    # Shows the welcome message with the author name, also clears
+    # the screen as init of the command.
+
     clear
     
     printf "
@@ -21,6 +24,8 @@ show_welcome_message(){
 }
 
 show_end_message(){
+    # Shows the bye message.
+
     echo ""
     echo " - - - - - - - - - - - -"
     echo "All done!"
