@@ -55,9 +55,9 @@ create_zip_file(){
     # Find more files or folders to exclude
     # $2 refers to the silent_flag
     if [[ "$SILENT_FLAG" = "true" ]] ; then
-        zip "$1" -r * -x "*/.git*" "*/node_modules*" "*/build*"  "*env/lib*" "*/bin*" "*/Debug*" "*/dist*" "*/.pytest_cache*" "*/__pycache*"
+        zip "$1" -r ./* -x "*/.git*" "*/node_modules*" "*/build*"  "*env/lib*" "*/bin*" "*/Debug*" "*/dist*" "*/.pytest_cache*" "*/__pycache*"
     else
-        zip "$1" -dd -r * -x "*/.git*" "*/node_modules*" "*/build*"  "*env/lib*" "*/bin*" "*/Debug*" "*/dist*" "*/.pytest_cache*" "*/__pycache*"
+        zip "$1" -dd -r ./* -x "*/.git*" "*/node_modules*" "*/build*"  "*env/lib*" "*/bin*" "*/Debug*" "*/dist*" "*/.pytest_cache*" "*/__pycache*"
     fi
     
 }
