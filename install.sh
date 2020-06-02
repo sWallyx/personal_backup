@@ -13,14 +13,29 @@ chmod +x backup.sh
 repository_folder=$(pwd)
 printf "The script is being installed in: %s\n" "$repository_folder"
 
-# Save alias
-printf " >>> Remove alias if exists\n"
-awk '!/alias backup/' ~/.bashrc > temp && mv temp ~/.bashrc
-awk '!/alias backup/' ~/.zshrc > temp && mv temp ~/.zshrc
+printf "Checking if the system uses zsh or bash \n"
 
-printf " >>> Save backup alias\n\n"
-echo "alias backup='$repository_folder/backup.sh'" >> ~/.bashrc
-echo "alias backup='$repository_folder/backup.sh'" >> ~/.zshrc
+if [ -n "$ZSH_VERSION" ]; then # Update just zsh
+    printf " >>> Remove alias if exists\n"
+    awk '!/alias backup/' ~/.zshrc > temp && mv temp ~/.zshrc
 
+    printf " >>> Save backup alias\n\n"
+    echo "alias backup='$repository_folder/backup.sh'" >> ~/.zshrc
+elif [ -n "$BASH_VERSION" ]; then # Update just bash
+    printf " >>> Remove alias if exists\n"
+    awk '!/alias backup/' ~/.bashrc > temp && mv temp ~/.bashrc
+
+    printf " >>> Save backup alias\n\n"
+    echo "alias backup='$repository_folder/backup.sh'" >> ~/.bashrc
+else # Do both to secure that the installation is completed correctly
+    printf " >>> Remove alias if exists\n"
+    awk '!/alias backup/' ~/.bashrc > temp && mv temp ~/.bashrc
+    awk '!/alias backup/' ~/.zshrc > temp && mv temp ~/.zshrc
+
+    printf " >>> Save backup alias\n\n"
+    echo "alias backup='$repository_folder/backup.sh'" >> ~/.bashrc
+    echo "alias backup='$repository_folder/backup.sh'" >> ~/.zshrc
+fi
 printf " >>> Installation completed!\n\n"
 printf "You can use the command by typing backup in the terminal\n"
+
